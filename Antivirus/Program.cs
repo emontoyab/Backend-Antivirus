@@ -2,6 +2,7 @@ using Antivirus.Models;
 using Antivirus.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,12 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Registra AutoMapper (se buscarán todos los perfiles en los assemblies actuales)
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+// Registra el servicio para status_opportunities
+builder.Services.AddScoped<IStatusOpportunitiesService, StatusOpportunitiesService>();
 
 var app = builder.Build();
 
