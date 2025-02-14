@@ -2,6 +2,7 @@ using Antivirus.Models;
 using Antivirus.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using AutoMapper; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +17,16 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Antivirus", Version = "v1" });
 });
 
+// Registra AutoMapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+// Registra el servicio para DescriptionsBootcamps
+builder.Services.AddScoped<IDescriptionsBootcampsService, DescriptionsBootcampsService>();
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
 
 var app = builder.Build();
 

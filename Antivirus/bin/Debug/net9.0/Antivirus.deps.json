@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v9.0": {
       "Antivirus/1.0.0": {
         "dependencies": {
+          "AutoMapper": "13.0.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.2",
           "Microsoft.EntityFrameworkCore": "9.0.2",
           "Microsoft.EntityFrameworkCore.Design": "9.0.2",
@@ -17,6 +18,17 @@
         },
         "runtime": {
           "Antivirus.dll": {}
+        }
+      },
+      "AutoMapper/13.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.Options": "9.0.2"
+        },
+        "runtime": {
+          "lib/net6.0/AutoMapper.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.0"
+          }
         }
       },
       "Humanizer.Core/2.14.1": {
@@ -398,6 +410,12 @@
       "Microsoft.Extensions.Caching.Abstractions/9.0.2": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "9.0.2"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Caching.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
         }
       },
       "Microsoft.Extensions.Caching.Memory/9.0.2": {
@@ -407,19 +425,44 @@
           "Microsoft.Extensions.Logging.Abstractions": "9.0.2",
           "Microsoft.Extensions.Options": "9.0.2",
           "Microsoft.Extensions.Primitives": "9.0.2"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Caching.Memory.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
         }
       },
       "Microsoft.Extensions.Configuration.Abstractions/9.0.2": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "9.0.2"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
         }
       },
       "Microsoft.Extensions.DependencyInjection/9.0.2": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.2"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.2": {},
+      "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.2": {
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
+        }
+      },
       "Microsoft.Extensions.DependencyModel/9.0.2": {
         "runtime": {
           "lib/net9.0/Microsoft.Extensions.DependencyModel.dll": {
@@ -433,20 +476,45 @@
           "Microsoft.Extensions.DependencyInjection": "9.0.2",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.2",
           "Microsoft.Extensions.Options": "9.0.2"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Logging.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
         }
       },
       "Microsoft.Extensions.Logging.Abstractions/9.0.2": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.2"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
         }
       },
       "Microsoft.Extensions.Options/9.0.2": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.2",
           "Microsoft.Extensions.Primitives": "9.0.2"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Options.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
         }
       },
-      "Microsoft.Extensions.Primitives/9.0.2": {},
+      "Microsoft.Extensions.Primitives/9.0.2": {
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Primitives.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
+        }
+      },
       "Microsoft.IdentityModel.Abstractions/8.4.0": {
         "runtime": {
           "lib/net9.0/Microsoft.IdentityModel.Abstractions.dll": {
@@ -681,7 +749,14 @@
         }
       },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
-      "System.Text.Json/9.0.2": {},
+      "System.Text.Json/9.0.2": {
+        "runtime": {
+          "lib/net9.0/System.Text.Json.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
+        }
+      },
       "System.Threading.Channels/7.0.0": {}
     }
   },
@@ -690,6 +765,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AutoMapper/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/Fx1SbJ16qS7dU4i604Sle+U9VLX+WSNVJggk6MupKVkYvvBm4XqYaeFuf67diHefHKHs50uQIS2YEDFhPCakQ==",
+      "path": "automapper/13.0.1",
+      "hashPath": "automapper.13.0.1.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",
