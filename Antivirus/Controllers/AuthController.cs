@@ -3,6 +3,7 @@ using Antivirus.Models;
 using Antivirus.Services;
 using System.Security.Cryptography;
 using System.Text;
+using Antivirus.config;
 namespace ProductApi.Controllers
 {
     [Route("api/auth")]
@@ -47,9 +48,9 @@ namespace ProductApi.Controllers
             }
 
             // Verificar la contraseña encriptada
-            string hashedPassword = Convert.ToBase64String(SHA256.HashData(Encoding.UTF8.GetBytes(loginDto.Password)));
+            string hashedPassword = PasswordHasher.HashPassword(loginDto.Password);
 
-            if (existingUser.PasswordHash != hashedPassword)
+            if (existingUser.password != hashedPassword)
             {
                 return Unauthorized(new { message = "Contraseña incorrecta." });
             }

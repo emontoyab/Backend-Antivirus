@@ -37,5 +37,4 @@ public partial class users
 
     [InverseProperty("id_usuarioNavigation")]
     public virtual ICollection<users_bootcamps> users_bootcamps { get; set; } = new List<users_bootcamps>();
-    public string PasswordHash { get; internal set; }
 }
