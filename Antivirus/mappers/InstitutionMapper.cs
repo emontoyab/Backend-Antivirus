@@ -1,43 +1,41 @@
 using Antivirus.DTOs;
+using Antivirus.Models;
 
-namespace Antivirus.Mappers
+public static class InstitutionMapper
 {
-    public static class InstitutionMapper
+    public static InstitutionResponseDto ToResponseDto(this institutions institution)
     {
-        public static InstitutionDto ToDto(this Models.institutions institution)
+        return new InstitutionResponseDto
         {
-            return new InstitutionDto
-            {
-                Id = institution.id,
-                BienestarLink = institution.bienestar_link,
-                CarerLink = institution.carer_link,
-                Directions = institution.directions,
-                GeneralLink = institution.general_link,
-                ProccesLink = institution.procces_link,
-                IdStatus = institution.id_status,
-                UbicationsInstitutions = institution.ubications_institutions,
-                Name = institution.name,
-                Observations = institution.observations,
-                Trial751 = institution.trial751
-            };
-        }
+            Id = institution.id,  // ✅ Devuelve el ID en GET
+            BienestarLink = institution.bienestar_link,
+            CarerLink = institution.carer_link,
+            Directions = institution.directions,
+            GeneralLink = institution.general_link,
+            ProccesLink = institution.procces_link,
+            IdStatus = institution.id_status,
+            UbicationsInstitutions = institution.ubications_institutions,
+            Name = institution.name,
+            Observations = institution.observations
+        };
+    }
 
-        public static Models.institutions ToEntity(this InstitutionDto dto)
+    public static institutions ToEntity(this InstitutionRequestDto dto)
+    {
+        return new institutions
         {
-            return new Models.institutions
-            {
-                id = dto.Id,
-                bienestar_link = dto.BienestarLink,
-                carer_link = dto.CarerLink,
-                directions = dto.Directions,
-                general_link = dto.GeneralLink,
-                procces_link = dto.ProccesLink,
-                id_status = dto.IdStatus,
-                ubications_institutions = dto.UbicationsInstitutions,
-                name = dto.Name,
-                observations = dto.Observations,
-                trial751 = dto.Trial751
-            };
-        }
+            bienestar_link = dto.BienestarLink,
+            carer_link = dto.CarerLink,
+            directions = dto.Directions,
+            general_link = dto.GeneralLink,
+            procces_link = dto.ProccesLink,
+            id_status = dto.IdStatus,
+            ubications_institutions = dto.UbicationsInstitutions,
+            name = dto.Name,
+            observations = dto.Observations
+        };
     }
 }
+
+
+

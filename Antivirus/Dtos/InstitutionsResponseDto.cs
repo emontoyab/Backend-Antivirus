@@ -1,8 +1,9 @@
 namespace Antivirus.DTOs
 {
-    public class InstitutionDto
+    // DTO para GET (Devuelve el ID)
+    public class InstitutionResponseDto
     {
-        
+        public long Id { get; set; }  
         public string? BienestarLink { get; set; }
         public string? CarerLink { get; set; }
         public string? Directions { get; set; }
@@ -12,6 +13,4 @@ namespace Antivirus.DTOs
         public long? UbicationsInstitutions { get; set; }
         public string? Name { get; set; }
         public string? Observations { get; set; }
-       
-    }
-}
+    }}

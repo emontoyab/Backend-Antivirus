@@ -14,27 +14,27 @@ namespace Antivirus.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<InstitutionDto>> GetAllAsync()
+        public async Task<IEnumerable<InstitutionResponseDto>> GetAllAsync()
         {
             var institutions = await _context.Set<institutions>().ToListAsync();
-            return institutions.ConvertAll(inst => inst.ToDto());
+            return institutions.ConvertAll(inst => inst.ToResponseDto());
         }
 
-        public async Task<InstitutionDto> GetByIdAsync(long id)
+        public async Task<InstitutionResponseDto> GetByIdAsync(long id)
         {
             var institution = await _context.Set<institutions>().FindAsync(id);
-            return institution?.ToDto();
+            return institution?.ToResponseDto();
         }
 
-        public async Task<InstitutionDto> CreateAsync(InstitutionDto institutionDto)
+        public async Task<InstitutionResponseDto> CreateAsync(InstitutionRequestDto institutionDto)
         {
             var institution = institutionDto.ToEntity();
             _context.Set<institutions>().Add(institution);
             await _context.SaveChangesAsync();
-            return institution.ToDto();
+            return institution.ToResponseDto();
         }
 
-        public async Task<bool> UpdateAsync(long id, InstitutionDto institutionDto)
+        public async Task<bool> UpdateAsync(long id, InstitutionRequestDto institutionDto)
         {
             var institution = await _context.Set<institutions>().FindAsync(id);
             if (institution == null) return false;
@@ -48,13 +48,11 @@ namespace Antivirus.Services
             institution.ubications_institutions = institutionDto.UbicationsInstitutions;
             institution.name = institutionDto.Name;
             institution.observations = institutionDto.Observations;
-            institution.trial751 = institutionDto.Trial751;
 
             _context.Set<institutions>().Update(institution);
             await _context.SaveChangesAsync();
             return true;
         }
-
         public async Task<bool> DeleteAsync(long id)
         {
             var institution = await _context.Set<institutions>().FindAsync(id);
