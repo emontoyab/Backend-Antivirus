@@ -1,5 +1,6 @@
 using Antivirus.DTOs;
 using Antivirus.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace Antivirus.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class DescriptionsBootcampsController : ControllerBase
     {
         private readonly IDescriptionsBootcampsService _service;
@@ -39,24 +41,21 @@ namespace Antivirus.Controllers
 
         // POST: api/DescriptionsBootcamps
         [HttpPost]
-        public async Task<ActionResult<DescriptionsBootcampsDTO>> Create(DescriptionsBootcampsDTO dto)
+        public async Task<ActionResult<DescriptionsBootcampsCreateDto>> Create(DescriptionsBootcampsCreateDto dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             var createdDto = await _service.CreateAsync(dto);
-            return CreatedAtAction(nameof(GetById), new { id = createdDto.id }, createdDto);
+            return CreatedAtAction(nameof(GetById), createdDto);
         }
 
         // PUT: api/DescriptionsBootcamps/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<DescriptionsBootcampsDTO>> Update(long id, DescriptionsBootcampsDTO dto)
+        public async Task<ActionResult<DescriptionsBootcampsCreateDto>> Update(long id, DescriptionsBootcampsCreateDto dto)
         {
-            if (id != dto.id)
-            {
-                return BadRequest("El ID del recurso no coincide con el ID de la petición.");
-            }
+
             var updatedDto = await _service.UpdateAsync(id, dto);
             if (updatedDto == null)
             {

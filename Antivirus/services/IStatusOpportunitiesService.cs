@@ -8,8 +8,8 @@ namespace Antivirus.Services
     {
         Task<IEnumerable<StatusOpportunitiesDTO>> GetAllAsync();
         Task<StatusOpportunitiesDTO?> GetByIdAsync(long id);
-        Task<StatusOpportunitiesDTO> CreateAsync(StatusOpportunitiesDTO dto);
-        Task<StatusOpportunitiesDTO?> UpdateAsync(long id, StatusOpportunitiesDTO dto);
+        Task<StatusOpportunitiesCreateDto> CreateAsync(StatusOpportunitiesCreateDto dto);
+        Task<StatusOpportunitiesCreateDto?> UpdateAsync(long id, StatusOpportunitiesCreateDto dto);
         Task<bool> DeleteAsync(long id);
     }
 }

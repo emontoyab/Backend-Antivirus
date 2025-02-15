@@ -13,6 +13,14 @@ namespace Antivirus.Mappers
             };
         }
 
+        public static costs_bootcamps MapDtoToEntityCreate(CostBootcampsCreatedDto Dto)
+        {
+            return new costs_bootcamps
+            {
+                costs = Dto.Costs,
+            };
+        }
+
         public static CostBootcampsDto MapEntityToDto(costs_bootcamps costsBootcamps)
         {
             return new CostBootcampsDto
@@ -20,5 +28,13 @@ namespace Antivirus.Mappers
                 Costs = costsBootcamps.costs,
             };
         }
+
+        public static CostBootcampsCreatedDto MapEntityToDtoCreate(costs_bootcamps costsBootcamps)
+        {
+            return new CostBootcampsCreatedDto            {
+                Costs = costsBootcamps.costs,
+            };
+        }
+
     }
 }

@@ -34,21 +34,22 @@ namespace Antivirus.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] CostBootcampsDto costBootcampsDto)
+        public async Task<ActionResult> Create([FromBody] CostBootcampsCreatedDto Dto)
         {
-            await _costsBootcampService.CreateAsync(costBootcampsDto);
-            return CreatedAtAction(nameof(Get),costBootcampsDto);
+            await _costsBootcampService.CreateAsync(Dto);
+            return CreatedAtAction(nameof(Get), Dto);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(int id, [FromBody] CostBootcampsDto costBootcampsDto)
+        public async Task<ActionResult> Update(int id, [FromBody] CostBootcampsCreatedDto Dto)
         {
+
             var existingCost = await _costsBootcampService.GetByIdAsync(id);
 
             if (existingCost == null)
                 return NotFound();
-            
-            await _costsBootcampService.UpdateAsync(id,costBootcampsDto);
+
+            await _costsBootcampService.UpdateAsync(id, Dto);
             return NoContent();
         }
 
@@ -56,12 +57,12 @@ namespace Antivirus.Controllers
         public async Task<ActionResult> Delete(int id)
         {
             var existingCost = await _costsBootcampService.GetByIdAsync(id);
-            if(existingCost == null)
+            if (existingCost == null)
                 return NotFound();
             await _costsBootcampService.DeleteAsync(id);
             return NoContent();
         }
 
     }
-    
+
 }

@@ -30,15 +30,15 @@ namespace Antivirus.Services
             return entity == null ? null : _mapper.Map<StatusOpportunitiesDTO>(entity);
         }
 
-        public async Task<StatusOpportunitiesDTO> CreateAsync(StatusOpportunitiesDTO dto)
+        public async Task<StatusOpportunitiesCreateDto> CreateAsync(StatusOpportunitiesCreateDto dto)
         {
             var entity = _mapper.Map<status_opportunities>(dto);
             _context.status_opportunities.Add(entity);
             await _context.SaveChangesAsync();
-            return _mapper.Map<StatusOpportunitiesDTO>(entity);
+            return _mapper.Map<StatusOpportunitiesCreateDto>(entity);
         }
 
-        public async Task<StatusOpportunitiesDTO?> UpdateAsync(long id, StatusOpportunitiesDTO dto)
+        public async Task<StatusOpportunitiesCreateDto?> UpdateAsync(long id, StatusOpportunitiesCreateDto dto)
         {
             var entity = await _context.status_opportunities.FindAsync(id);
             if (entity == null)
@@ -50,7 +50,7 @@ namespace Antivirus.Services
 
             _context.status_opportunities.Update(entity);
             await _context.SaveChangesAsync();
-            return _mapper.Map<StatusOpportunitiesDTO>(entity);
+            return _mapper.Map<StatusOpportunitiesCreateDto>(entity);
         }
 
         public async Task<bool> DeleteAsync(long id)

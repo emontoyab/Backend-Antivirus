@@ -42,8 +42,9 @@ namespace Antivirus.Controllers
 
         // POST: api/StatusOpportunities
         [HttpPost]
-        public async Task<ActionResult<StatusOpportunitiesDTO>> Create(StatusOpportunitiesDTO dto)
+        public async Task<ActionResult<StatusOpportunitiesCreateDto>> Create(StatusOpportunitiesCreateDto dto)
         {
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -54,15 +55,9 @@ namespace Antivirus.Controllers
 
         // PUT: api/StatusOpportunities/{id}
         [HttpPut("{id}")]
-        public async Task<ActionResult<StatusOpportunitiesDTO>> Update(long id, StatusOpportunitiesDTO dto)
+        public async Task<ActionResult<StatusOpportunitiesCreateDto>> Update(long id, StatusOpportunitiesCreateDto dto)
         {
 
-            status_opportunities status = new();
-
-            if (id != status.id)
-            {
-                return BadRequest("El ID del recurso no coincide con el ID de la petición.");
-            }
             var updatedStatus = await _service.UpdateAsync(id, dto);
             if (updatedStatus == null)
             {

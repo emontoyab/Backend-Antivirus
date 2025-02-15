@@ -13,9 +13,9 @@ namespace Antivirus.Services
         {
             _context = context;
         }
-        public async Task CreateAsync(CostBootcampsDto costBootcampsDto)
+        public async Task CreateAsync(CostBootcampsCreatedDto Dto)
         {
-            var costBootcamps = CostBootcampsMapper.MapDtoToEntity(costBootcampsDto);
+            var costBootcamps = CostBootcampsMapper.MapDtoToEntityCreate(Dto);
             _context.costs_bootcamps.Add(costBootcamps);
             await _context.SaveChangesAsync();
         }
@@ -42,12 +42,12 @@ namespace Antivirus.Services
             return costs != null  ? CostBootcampsMapper.MapEntityToDto(costs) : null;
         }
 
-        public async Task UpdateAsync(int id, CostBootcampsDto costBootcampsDto)
+        public async Task UpdateAsync(int id, CostBootcampsCreatedDto Dto)
         {
             var costs = await _context.costs_bootcamps.FindAsync(id);
             if (costs != null)
             {
-                costs.costs = costBootcampsDto.Costs;
+                costs.costs = Dto.Costs;
                 await _context.SaveChangesAsync();
             }
         }

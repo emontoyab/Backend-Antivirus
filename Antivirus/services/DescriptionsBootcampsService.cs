@@ -30,7 +30,7 @@ namespace Antivirus.Services
             return entity == null ? null : _mapper.Map<DescriptionsBootcampsDTO>(entity);
         }
 
-        public async Task<DescriptionsBootcampsDTO> CreateAsync(DescriptionsBootcampsDTO dto)
+        public async Task<DescriptionsBootcampsDTO> CreateAsync(DescriptionsBootcampsCreateDto dto)
         {
             var entity = _mapper.Map<descriptions_bootcamps>(dto);
             _context.descriptions_bootcamps.Add(entity);
@@ -38,7 +38,7 @@ namespace Antivirus.Services
             return _mapper.Map<DescriptionsBootcampsDTO>(entity);
         }
 
-        public async Task<DescriptionsBootcampsDTO?> UpdateAsync(long id, DescriptionsBootcampsDTO dto)
+        public async Task<DescriptionsBootcampsCreateDto?> UpdateAsync(long id, DescriptionsBootcampsCreateDto dto)
         {
             var entity = await _context.descriptions_bootcamps.FindAsync(id);
             if (entity == null)
@@ -48,11 +48,10 @@ namespace Antivirus.Services
 
             // Actualiza los campos
             entity.description = dto.description;
-            entity.trial751 = dto.trial751;
 
             _context.descriptions_bootcamps.Update(entity);
             await _context.SaveChangesAsync();
-            return _mapper.Map<DescriptionsBootcampsDTO>(entity);
+            return _mapper.Map<DescriptionsBootcampsCreateDto>(entity);
         }
 
         public async Task<bool> DeleteAsync(long id)
@@ -65,6 +64,11 @@ namespace Antivirus.Services
             _context.descriptions_bootcamps.Remove(entity);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        Task<DescriptionsBootcampsCreateDto> IDescriptionsBootcampsService.CreateAsync(DescriptionsBootcampsCreateDto dto)
+        {
+            throw new NotImplementedException();
         }
     }
 }

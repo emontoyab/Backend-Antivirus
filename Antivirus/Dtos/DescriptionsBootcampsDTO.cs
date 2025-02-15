@@ -4,6 +4,10 @@ namespace Antivirus.DTOs
     {
         public long id { get; set; }
         public string? description { get; set; }
-        public char? trial751 { get; set; }
+    }
+
+    public class DescriptionsBootcampsCreateDto
+    {
+        public string? description { get; set; }
     }
 }

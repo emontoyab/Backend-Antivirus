@@ -6,8 +6,8 @@ namespace Antivirus.Services
     {
         Task<IEnumerable<CostBootcampsDto>> GetAllAsync();
         Task<CostBootcampsDto?> GetByIdAsync(int id);
-        Task CreateAsync(CostBootcampsDto costBootcampsDto);
-        Task UpdateAsync(int id, CostBootcampsDto costBootcampsDto);
+        Task CreateAsync(CostBootcampsCreatedDto Dto);
+        Task UpdateAsync(int id, CostBootcampsCreatedDto Dto);
         Task DeleteAsync(int id);
 
     }
