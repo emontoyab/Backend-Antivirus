@@ -1,4 +1,8 @@
 using Antivirus.config;
+using AutoMapper;
+
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.ConfigureServices(builder.Configuration);
 builder.Services.ConfigureJwtAuthentication(builder.Configuration);
 builder.Services.ConfigureSwagger();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 

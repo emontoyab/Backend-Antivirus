@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Antivirus.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Antivirus.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class StatusOpportunitiesController : ControllerBase
     {
         private readonly IStatusOpportunitiesService _service;
