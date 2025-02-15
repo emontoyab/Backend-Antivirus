@@ -47,7 +47,6 @@ namespace Antivirus.Services
             }
 
             entity.status = dto.status;
-            entity.trial755 = dto.trial755;
 
             _context.status_opportunities.Update(entity);
             await _context.SaveChangesAsync();

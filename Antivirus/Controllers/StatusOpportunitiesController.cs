@@ -3,6 +3,7 @@ using Antivirus.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Antivirus.Models;
 
 namespace Antivirus.Controllers
 {
@@ -46,14 +47,17 @@ namespace Antivirus.Controllers
                 return BadRequest(ModelState);
             }
             var createdStatus = await _service.CreateAsync(dto);
-            return CreatedAtAction(nameof(GetById), new { id = createdStatus.id }, createdStatus);
+            return CreatedAtAction(nameof(GetById), createdStatus);
         }
 
         // PUT: api/StatusOpportunities/{id}
         [HttpPut("{id}")]
         public async Task<ActionResult<StatusOpportunitiesDTO>> Update(long id, StatusOpportunitiesDTO dto)
         {
-            if (id != dto.id)
+
+            status_opportunities status = new();
+
+            if (id != status.id)
             {
                 return BadRequest("El ID del recurso no coincide con el ID de la petición.");
             }
