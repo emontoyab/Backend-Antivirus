@@ -521,6 +521,10 @@ namespace Antivirus.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("id"));
 
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("date_birth")
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
