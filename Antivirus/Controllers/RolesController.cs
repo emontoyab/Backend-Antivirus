@@ -1,4 +1,3 @@
-// RolesController.cs
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,9 +10,9 @@ namespace Antivirus.Controllers
     [ApiController]
     public class RolesController : ControllerBase
     {
-        private readonly RoleService _roleService;
+        private readonly IRoleService _roleService;
 
-        public RolesController(RoleService roleService)
+        public RolesController(IRoleService roleService)
         {
             _roleService = roleService;
         }
@@ -74,4 +73,4 @@ namespace Antivirus.Controllers
             }
         }
     }
-}
+}1

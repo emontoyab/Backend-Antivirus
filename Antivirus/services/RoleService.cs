@@ -1,4 +1,3 @@
-// RoleService.cs
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -8,24 +7,24 @@ using Antivirus.Mappers;
 
 namespace Antivirus.Services
 {
-    public class RoleService
+    public class RoleService : IRoleService
     {
-        private readonly DbContext _context;
+        private readonly AppDbContext _context;
 
-        public RoleService(DbContext context)
+        public RoleService(AppDbContext context)
         {
             _context = context;
         }
 
         public async Task<IEnumerable<RoleDto>> GetAllRolesAsync()
         {
-            var roles = await _context.Set<role>().ToListAsync();
+            var roles = await _context.role.ToListAsync();
             return RoleMapper.MapEntitiesToDtos(roles);
         }
 
         public async Task<RoleDto> GetRoleByIdAsync(long id)
         {
-            var role = await _context.Set<role>().FindAsync(id);
+            var role = await _context.role.FindAsync(id);
             if (role == null) throw new KeyNotFoundException("Role not found");
             return RoleMapper.MapEntityToDto(role);
         }
@@ -33,30 +32,30 @@ namespace Antivirus.Services
         public async Task<RoleDto> CreateRoleAsync(RoleDto roleDto)
         {
             var role = RoleMapper.MapDtoToEntity(roleDto);
-            _context.Set<role>().Add(role);
+            _context.role.Add(role);
             await _context.SaveChangesAsync();
             return RoleMapper.MapEntityToDto(role);
         }
 
         public async Task<RoleDto> UpdateRoleAsync(long id, RoleDto roleDto)
         {
-            var role = await _context.Set<role>().FindAsync(id);
+            var role = await _context.role.FindAsync(id);
             if (role == null) throw new KeyNotFoundException("Role not found");
 
             role.name = roleDto.Name;
             role.trial755 = roleDto.Trial755;
 
-            _context.Set<role>().Update(role);
+            _context.role.Update(role);
             await _context.SaveChangesAsync();
             return RoleMapper.MapEntityToDto(role);
         }
 
         public async Task DeleteRoleAsync(long id)
         {
-            var role = await _context.Set<role>().FindAsync(id);
+            var role = await _context.role.FindAsync(id);
             if (role == null) throw new KeyNotFoundException("Role not found");
 
-            _context.Set<role>().Remove(role);
+            _context.role.Remove(role);
             await _context.SaveChangesAsync();
         }
     }
