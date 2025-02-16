@@ -1,4 +1,5 @@
 using Antivirus.config;
+using Antivirus.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.ConfigureServices(builder.Configuration);
 builder.Services.ConfigureJwtAuthentication(builder.Configuration);
 builder.Services.ConfigureSwagger();
-
+builder.Services.AddScoped<IUbicationInstitutionService, UbicationInstitutionService>();
+builder.Services.AddControllers();
 var app = builder.Build();
 
 // Middleware de manejo de errores
