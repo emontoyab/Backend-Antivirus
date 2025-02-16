@@ -8,9 +8,9 @@ namespace Antivirus.Controllers
     [ApiController]
     public class BootcampController : ControllerBase
     {
-        private readonly BootcampService _bootcampService;
+        private readonly IBootcampService _bootcampService;
 
-        public BootcampController(BootcampService bootcampService)
+        public BootcampController(IBootcampService bootcampService)
         {
             _bootcampService = bootcampService;
         }
