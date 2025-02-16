@@ -73,4 +73,4 @@ namespace Antivirus.Controllers
             }
         }
     }
-}1
+}
