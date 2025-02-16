@@ -33,7 +33,7 @@ namespace Antivirus.Controllers
                 var role = await _roleService.GetRoleByIdAsync(id);
                 return Ok(role);
             }
-            catch (ResourceNotFoundException)
+            catch (KeyNotFoundException)
             {
                 return NotFound();
             }
@@ -54,7 +54,7 @@ namespace Antivirus.Controllers
                 var updatedRole = await _roleService.UpdateRoleAsync(id, roleDto);
                 return Ok(updatedRole);
             }
-            catch (ResourceNotFoundException)
+            catch (KeyNotFoundException)
             {
                 return NotFound();
             }
@@ -68,7 +68,7 @@ namespace Antivirus.Controllers
                 await _roleService.DeleteRoleAsync(id);
                 return NoContent();
             }
-            catch (ResourceNotFoundException)
+            catch (KeyNotFoundException)
             {
                 return NotFound();
             }

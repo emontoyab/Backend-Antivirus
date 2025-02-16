@@ -26,7 +26,7 @@ namespace Antivirus.Services
         public async Task<RoleDto> GetRoleByIdAsync(long id)
         {
             var role = await _context.Set<role>().FindAsync(id);
-            if (role == null) throw new ResourceNotFoundException("Role not found");
+            if (role == null) throw new KeyNotFoundException("Role not found");
             return RoleMapper.MapEntityToDto(role);
         }
 
@@ -41,7 +41,7 @@ namespace Antivirus.Services
         public async Task<RoleDto> UpdateRoleAsync(long id, RoleDto roleDto)
         {
             var role = await _context.Set<role>().FindAsync(id);
-            if (role == null) throw new ResourceNotFoundException("Role not found");
+            if (role == null) throw new KeyNotFoundException("Role not found");
 
             role.name = roleDto.Name;
             role.trial755 = roleDto.Trial755;
@@ -54,7 +54,7 @@ namespace Antivirus.Services
         public async Task DeleteRoleAsync(long id)
         {
             var role = await _context.Set<role>().FindAsync(id);
-            if (role == null) throw new ResourceNotFoundException("Role not found");
+            if (role == null) throw new KeyNotFoundException("Role not found");
 
             _context.Set<role>().Remove(role);
             await _context.SaveChangesAsync();
