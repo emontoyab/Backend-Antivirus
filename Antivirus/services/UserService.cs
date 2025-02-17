@@ -1,66 +1,64 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Antivirus.Dtos;
+using Antivirus.DTOs;
 using Antivirus.Models;
 using Antivirus.Mappers;
+using Microsoft.EntityFrameworkCore;
+using Antivirus.config;
 
 namespace Antivirus.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        private readonly DbContext _context;
+        private readonly AppDbContext _context;
 
-        public UserService(DbContext context)
+        public UserService(AppDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
+        public async Task<IEnumerable<RegisterUserDto>> GetAllUsersAsync()
         {
-            var users = await _context.Set<users>().ToListAsync();
-            return UserMapper.MapEntitiesToDtos(users);
+            var users = await _context.users.ToListAsync();
+            return users.Select(UserMapper.MapUserToRegisterUserDto);
         }
 
-        public async Task<UserDto> GetUserByIdAsync(long id)
+        public async Task<RegisterUserDto> GetUserByIdAsync(long id)
         {
-            var user = await _context.Set<users>().FindAsync(id);
-            if (user == null) throw new ResourceNotFoundException("User not found");
-            return UserMapper.MapEntityToDto(user);
+            var user = await _context.users.FindAsync(id);
+            return user == null ? null : UserMapper.MapUserToRegisterUserDto(user);
         }
 
-        public async Task<UserDto> CreateUserAsync(UserDto userDto)
+        public async Task<RegisterUserDto> CreateUserAsync(RegisterUserDto userDto)
         {
-            var user = UserMapper.MapDtoToEntity(userDto);
-            _context.Set<users>().Add(user);
+            var user = UserMapper.MapRegisterUserDtoToUser(userDto);
+            _context.users.Add(user);
             await _context.SaveChangesAsync();
-            return UserMapper.MapEntityToDto(user);
+            return UserMapper.MapUserToRegisterUserDto(user);
         }
 
-        public async Task<UserDto> UpdateUserAsync(long id, UserDto userDto)
+        public async Task<RegisterUserDto> UpdateUserAsync(long id, RegisterUserDto userDto)
         {
-            var user = await _context.Set<users>().FindAsync(id);
-            if (user == null) throw new ResourceNotFoundException("User not found");
+            var user = await _context.users.FindAsync(id);
+            if (user == null) return null;
 
             user.name = userDto.Name;
-            user.email = userDto.Email;
             user.last_name = userDto.LastName;
+            user.email = userDto.Email;
+            user.password = PasswordHasher.HashPassword(userDto.Password);
             user.date_birth = userDto.DateBirth;
-            user.password = userDto.Password;
-            user.trial755 = userDto.Trial755;
 
-            _context.Set<users>().Update(user);
+            _context.users.Update(user);
             await _context.SaveChangesAsync();
-            return UserMapper.MapEntityToDto(user);
+            return UserMapper.MapUserToRegisterUserDto(user);
         }
 
-        public async Task DeleteUserAsync(long id)
+        public async Task<bool> DeleteUserAsync(long id)
         {
-            var user = await _context.Set<users>().FindAsync(id);
-            if (user == null) throw new ResourceNotFoundException("User not found");
+            var user = await _context.users.FindAsync(id);
+            if (user == null) return false;
 
-            _context.Set<users>().Remove(user);
+            _context.users.Remove(user);
             await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

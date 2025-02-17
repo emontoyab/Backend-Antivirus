@@ -1,77 +1,58 @@
-// UsersController.cs
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Antivirus.Dtos;
+using Antivirus.DTOs;
 using Antivirus.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Antivirus.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
 
-        public UsersController(UserService userService)
+        public UserController(IUserService userService)
         {
             _userService = userService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserDto>>> GetAllUsers()
+        public async Task<IActionResult> GetAllUsers()
         {
             var users = await _userService.GetAllUsersAsync();
             return Ok(users);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserDto>> GetUserById(long id)
+        public async Task<IActionResult> GetUserById(long id)
         {
-            try
-            {
-                var user = await _userService.GetUserByIdAsync(id);
-                return Ok(user);
-            }
-            catch (ResourceNotFoundException)
-            {
-                return NotFound();
-            }
+            var user = await _userService.GetUserByIdAsync(id);
+            if (user == null) return NotFound();
+            return Ok(user);
         }
 
         [HttpPost]
-        public async Task<ActionResult<UserDto>> CreateUser(UserDto userDto)
+        public async Task<IActionResult> CreateUser([FromBody] RegisterUserDto userDto)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             var createdUser = await _userService.CreateUserAsync(userDto);
             return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<UserDto>> UpdateUser(long id, UserDto userDto)
+        public async Task<IActionResult> UpdateUser(long id, [FromBody] RegisterUserDto userDto)
         {
-            try
-            {
-                var updatedUser = await _userService.UpdateUserAsync(id, userDto);
-                return Ok(updatedUser);
-            }
-            catch (ResourceNotFoundException)
-            {
-                return NotFound();
-            }
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            var updatedUser = await _userService.UpdateUserAsync(id, userDto);
+            if (updatedUser == null) return NotFound();
+            return Ok(updatedUser);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(long id)
         {
-            try
-            {
-                await _userService.DeleteUserAsync(id);
-                return NoContent();
-            }
-            catch (ResourceNotFoundException)
-            {
-                return NotFound();
-            }
+            var result = await _userService.DeleteUserAsync(id);
+            if (!result) return NotFound();
+            return NoContent();
         }
     }
 }

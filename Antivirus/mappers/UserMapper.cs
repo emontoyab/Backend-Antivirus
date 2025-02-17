@@ -1,42 +1,34 @@
-// UserMapper.cs
-using Antivirus.Dtos;
+using Antivirus.DTOs;
 using Antivirus.Models;
+using Antivirus.config;
 
 namespace Antivirus.Mappers
 {
     public static class UserMapper
     {
-        public static users MapDtoToEntity(UserDto userDto)
+        public static users MapRegisterUserDtoToUser(RegisterUserDto userDto)
         {
             return new users
             {
-                id = userDto.Id,
-                date_birth = userDto.DateBirth,
-                email = userDto.Email,
-                last_name = userDto.LastName,
                 name = userDto.Name,
-                password = userDto.Password,
-                trial755 = userDto.Trial755
+                last_name = userDto.LastName,
+                email = userDto.Email,
+                password = PasswordHasher.HashPassword(userDto.Password),
+                date_birth = userDto.DateBirth
             };
         }
 
-        public static UserDto MapEntityToDto(users user)
+        public static RegisterUserDto MapUserToRegisterUserDto(users user)
         {
-            return new UserDto
+            return new RegisterUserDto
             {
                 Id = user.id,
-                DateBirth = user.date_birth,
-                Email = user.email,
-                LastName = user.last_name,
                 Name = user.name,
+                LastName = user.last_name,
+                Email = user.email,
                 Password = user.password,
-                Trial755 = user.trial755
+                DateBirth = user.date_birth
             };
-        }
-
-        public static IEnumerable<UserDto> MapEntitiesToDtos(IEnumerable<users> users)
-        {
-            return users.Select(MapEntityToDto).ToList();
         }
     }
 }
