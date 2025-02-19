@@ -14,6 +14,8 @@ namespace Antivirus.config
             services.AddScoped<IStatusOpportunitiesService, StatusOpportunitiesService>();
             services.AddScoped<IDescriptionsBootcampsService, DescriptionsBootcampsService>();
             services.AddScoped<IStatusBootcampService, StatusBootcampService>();
+            services.AddScoped<ITypeOpportunityService, TypeOpportunityService>();
+
             
             // Configuración de la base de datos
             services.AddDbContext<AppDbContext>(options =>
