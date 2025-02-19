@@ -9,6 +9,7 @@ namespace Antivirus.Mappers
         public OpportunitiesProfile()
         {
             CreateMap<opportunities, OpportunitiesDTO>().ReverseMap();
+            CreateMap<opportunities, OpportunitiesCreateDTO>().ReverseMap();
         }
     }
 }
