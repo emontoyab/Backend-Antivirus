@@ -1,4 +1,5 @@
 using Antivirus.config;
+using Antivirus.Services;
 using AutoMapper;
 
 
@@ -12,7 +13,7 @@ builder.Services.ConfigureServices(builder.Configuration);
 builder.Services.ConfigureJwtAuthentication(builder.Configuration);
 builder.Services.ConfigureSwagger();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+builder.Services.AddControllers();
 
 
 var app = builder.Build();
