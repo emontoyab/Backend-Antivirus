@@ -19,6 +19,7 @@ namespace Antivirus.config
             services.AddScoped<IStatusInstitutionService, StatusInstitutionService>();
             services.AddScoped<IOpportunitiesService, OpportunitiesService>();
             services.AddScoped<ICategoriesOpportunitiesService, CategoriesOpportunitiesService>();
+            services.AddScoped<ITypeOpportunityService, TypeOpportunityService>();
             
             // Configuración de la base de datos
             services.AddDbContext<AppDbContext>(options =>
