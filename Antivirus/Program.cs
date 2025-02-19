@@ -8,7 +8,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.ConfigureServices(builder.Configuration);
 builder.Services.ConfigureJwtAuthentication(builder.Configuration);
 builder.Services.ConfigureSwagger();
-builder.Services.AddScoped<IUbicationInstitutionService, UbicationInstitutionService>();
 builder.Services.AddControllers();
 var app = builder.Build();
 
