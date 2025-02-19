@@ -1,4 +1,4 @@
-using Antivirus.DTOs;
+using Antivirus.Dtos;
 using Antivirus.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -39,24 +39,21 @@ namespace Antivirus.Controllers
 
         // POST: api/Opportunities
         [HttpPost]
-        public async Task<ActionResult<OpportunitiesDTO>> Create(OpportunitiesDTO dto)
+        public async Task<ActionResult<OpportunitiesCreateDTO>> Create(OpportunitiesCreateDTO dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             var createdOpportunity = await _service.CreateAsync(dto);
-            return CreatedAtAction(nameof(GetById), new { id = createdOpportunity.id }, createdOpportunity);
+            return CreatedAtAction(nameof(GetById), createdOpportunity);
         }
 
         // PUT: api/Opportunities/{id}
         [HttpPut("{id}")]
-        public async Task<ActionResult<OpportunitiesDTO>> Update(long id, OpportunitiesDTO dto)
+        public async Task<ActionResult<OpportunitiesCreateDTO>> Update(long id, OpportunitiesCreateDTO dto)
         {
-            if (id != dto.id)
-            {
-                return BadRequest("El ID del recurso no coincide con el ID de la petición.");
-            }
+
             var updatedOpportunity = await _service.UpdateAsync(id, dto);
             if (updatedOpportunity == null)
             {

@@ -1,5 +1,5 @@
 using AutoMapper;
-using Antivirus.DTOs;
+using Antivirus.Dtos;
 using Antivirus.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -30,15 +30,15 @@ namespace Antivirus.Services
             return entity == null ? null : _mapper.Map<OpportunitiesDTO>(entity);
         }
 
-        public async Task<OpportunitiesDTO> CreateAsync(OpportunitiesDTO dto)
+        public async Task<OpportunitiesCreateDTO> CreateAsync(OpportunitiesCreateDTO dto)
         {
             var entity = _mapper.Map<opportunities>(dto);
             _context.opportunities.Add(entity);
             await _context.SaveChangesAsync();
-            return _mapper.Map<OpportunitiesDTO>(entity);
+            return _mapper.Map<OpportunitiesCreateDTO>(entity);
         }
 
-        public async Task<OpportunitiesDTO?> UpdateAsync(long id, OpportunitiesDTO dto)
+        public async Task<OpportunitiesCreateDTO?> UpdateAsync(long id, OpportunitiesCreateDTO dto)
         {
             var entity = await _context.opportunities.FindAsync(id);
             if (entity == null)
@@ -62,7 +62,7 @@ namespace Antivirus.Services
 
             _context.opportunities.Update(entity);
             await _context.SaveChangesAsync();
-            return _mapper.Map<OpportunitiesDTO>(entity);
+            return _mapper.Map<OpportunitiesCreateDTO>(entity);
         }
 
         public async Task<bool> DeleteAsync(long id)

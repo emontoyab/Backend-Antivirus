@@ -1,6 +1,6 @@
 using AutoMapper;
 using Antivirus.Models;
-using Antivirus.DTOs;
+using Antivirus.Dtos;
 
 namespace Antivirus.Mappers
 {
