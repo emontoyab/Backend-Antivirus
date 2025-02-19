@@ -13,7 +13,6 @@ builder.Services.ConfigureServices(builder.Configuration);
 builder.Services.ConfigureJwtAuthentication(builder.Configuration);
 builder.Services.ConfigureSwagger();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddScoped<IStatusInstitutionService, StatusInstitutionService>();
 builder.Services.AddControllers();
 
 
