@@ -14,17 +14,29 @@ namespace Antivirus.Mappers
             {
                 id = roleDto.Id,
                 name = roleDto.Name,
-                trial755 = roleDto.Trial755
             };
         }
-
         public static RoleDto MapEntityToDto(role role)
         {
             return new RoleDto
             {
                 Id = role.id,
                 Name = role.name,
-                Trial755 = role.trial755
+            };
+        }
+
+        public static RoleCreateDto MapCreateEntityToDto(role role)
+        {
+            return new RoleCreateDto
+            {
+                Name = role.name,
+            };
+        }
+        public static role MapCreateDtoToEntity(RoleCreateDto roleCreateDto)
+        {
+            return new role
+            {
+                name = roleCreateDto.Name,
             };
         }
 

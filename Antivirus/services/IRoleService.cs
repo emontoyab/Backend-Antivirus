@@ -8,8 +8,8 @@ namespace Antivirus.Services
     {
         Task<IEnumerable<RoleDto>> GetAllRolesAsync();
         Task<RoleDto> GetRoleByIdAsync(long id);
-        Task<RoleDto> CreateRoleAsync(RoleDto roleDto);
-        Task<RoleDto> UpdateRoleAsync(long id, RoleDto roleDto);
+        Task<RoleCreateDto> CreateRoleAsync(RoleCreateDto roleDto);
+        Task<RoleCreateDto> UpdateRoleAsync(long id, RoleCreateDto roleDto);
         Task DeleteRoleAsync(long id);
     }
 }

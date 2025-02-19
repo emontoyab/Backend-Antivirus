@@ -29,25 +29,24 @@ namespace Antivirus.Services
             return RoleMapper.MapEntityToDto(role);
         }
 
-        public async Task<RoleDto> CreateRoleAsync(RoleDto roleDto)
+        public async Task<RoleCreateDto> CreateRoleAsync(RoleCreateDto roleDto)
         {
-            var role = RoleMapper.MapDtoToEntity(roleDto);
+            var role = RoleMapper.MapCreateDtoToEntity(roleDto);
             _context.role.Add(role);
             await _context.SaveChangesAsync();
-            return RoleMapper.MapEntityToDto(role);
+            return RoleMapper.MapCreateEntityToDto(role);
         }
 
-        public async Task<RoleDto> UpdateRoleAsync(long id, RoleDto roleDto)
+        public async Task<RoleCreateDto> UpdateRoleAsync(long id, RoleCreateDto roleDto)
         {
             var role = await _context.role.FindAsync(id);
             if (role == null) throw new KeyNotFoundException("Role not found");
 
             role.name = roleDto.Name;
-            role.trial755 = roleDto.Trial755;
 
             _context.role.Update(role);
             await _context.SaveChangesAsync();
-            return RoleMapper.MapEntityToDto(role);
+            return RoleMapper.MapCreateEntityToDto(role);
         }
 
         public async Task DeleteRoleAsync(long id)

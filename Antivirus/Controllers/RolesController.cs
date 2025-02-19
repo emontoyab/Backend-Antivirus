@@ -39,14 +39,14 @@ namespace Antivirus.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<RoleDto>> CreateRole(RoleDto roleDto)
+        public async Task<ActionResult<RoleCreateDto>> CreateRole(RoleCreateDto roleDto)
         {
             var createdRole = await _roleService.CreateRoleAsync(roleDto);
-            return CreatedAtAction(nameof(GetRoleById), new { id = createdRole.Id }, createdRole);
+            return CreatedAtAction(nameof(GetRoleById), createdRole);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<RoleDto>> UpdateRole(long id, RoleDto roleDto)
+        public async Task<ActionResult<RoleCreateDto>> UpdateRole(long id, RoleCreateDto roleDto)
         {
             try
             {

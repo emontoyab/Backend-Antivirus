@@ -4,6 +4,9 @@ namespace Antivirus.Dtos
     {
         public long Id { get; set; }
         public string? Name { get; set; }
-        public char? Trial755 { get; set; }
+    }
+    public class RoleCreateDto
+    {
+        public string? Name { get; set; }
     }
 }
