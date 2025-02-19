@@ -1,5 +1,5 @@
 using AutoMapper;
-using Antivirus.DTOs;
+using Antivirus.Dtos;
 using Antivirus.Models; 
 using Microsoft.EntityFrameworkCore;
 
@@ -29,15 +29,15 @@ namespace Antivirus.Services
             return entity == null ? null : _mapper.Map<CategoriesOpportunitiesDTO>(entity);
         }
 
-        public async Task<CategoriesOpportunitiesDTO> CreateAsync(CategoriesOpportunitiesDTO dto)
+        public async Task<CategoriesCreateOpportunitiesDTO> CreateAsync(CategoriesCreateOpportunitiesDTO dto)
         {
             var entity = _mapper.Map<categories_opportunities>(dto);
             _context.categories_opportunities.Add(entity);
             await _context.SaveChangesAsync();
-            return _mapper.Map<CategoriesOpportunitiesDTO>(entity);
+            return _mapper.Map<CategoriesCreateOpportunitiesDTO>(entity);
         }
 
-        public async Task<CategoriesOpportunitiesDTO?> UpdateAsync(long id, CategoriesOpportunitiesDTO dto)
+        public async Task<CategoriesCreateOpportunitiesDTO?> UpdateAsync(long id, CategoriesCreateOpportunitiesDTO dto)
         {
             var entity = await _context.categories_opportunities.FindAsync(id);
             if (entity == null)
@@ -46,12 +46,11 @@ namespace Antivirus.Services
             }
 
             // Actualiza los campos
-            entity.categories = dto.categories;
-            entity.trial751 = dto.trial751;
+            entity.categories = dto.Categories;
 
             _context.categories_opportunities.Update(entity);
             await _context.SaveChangesAsync();
-            return _mapper.Map<CategoriesOpportunitiesDTO>(entity);
+            return _mapper.Map<CategoriesCreateOpportunitiesDTO>(entity);
         }
 
         public async Task<bool> DeleteAsync(long id)

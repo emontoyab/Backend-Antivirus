@@ -1,6 +1,6 @@
 using AutoMapper;
 using Antivirus.Models;
-using Antivirus.DTOs;
+using Antivirus.Dtos;
 
 namespace Antivirus.Profiles
 {
@@ -9,6 +9,7 @@ namespace Antivirus.Profiles
         public CategoriesOpportunitiesProfile()
         {
             CreateMap<categories_opportunities, CategoriesOpportunitiesDTO>().ReverseMap();
+            CreateMap<categories_opportunities, CategoriesCreateOpportunitiesDTO>().ReverseMap();
         }
     }
 }

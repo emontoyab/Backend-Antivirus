@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Antivirus.DTOs;
+using Antivirus.Dtos;
 
 namespace Antivirus.Services
 {
@@ -8,8 +8,8 @@ namespace Antivirus.Services
     {
         Task<IEnumerable<CategoriesOpportunitiesDTO>> GetAllAsync();
         Task<CategoriesOpportunitiesDTO?> GetByIdAsync(long id);
-        Task<CategoriesOpportunitiesDTO> CreateAsync(CategoriesOpportunitiesDTO dto);
-        Task<CategoriesOpportunitiesDTO?> UpdateAsync(long id, CategoriesOpportunitiesDTO dto);
+        Task<CategoriesCreateOpportunitiesDTO> CreateAsync(CategoriesCreateOpportunitiesDTO dto);
+        Task<CategoriesCreateOpportunitiesDTO?> UpdateAsync(long id, CategoriesCreateOpportunitiesDTO dto);
         Task<bool> DeleteAsync(long id);
     }
 }
