@@ -11,6 +11,7 @@ namespace Antivirus.config
             // Inyección de dependencias
             services.AddScoped<AuthService>();
             services.AddScoped<ICostsBootcampService, CostBootcampService>();
+            services.AddScoped<IInstitutionService, InstitutionService>();
             services.AddScoped<IStatusOpportunitiesService, StatusOpportunitiesService>();
             services.AddScoped<IDescriptionsBootcampsService, DescriptionsBootcampsService>();
             services.AddScoped<IStatusBootcampService, StatusBootcampService>();
