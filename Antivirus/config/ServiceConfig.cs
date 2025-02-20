@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Antivirus.Services;
 using Antivirus.Models;
 using Antivirus.Services.Interfaces;
+using Antivirus.Data;
 
 namespace Antivirus.config
 {

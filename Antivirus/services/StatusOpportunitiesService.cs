@@ -4,6 +4,7 @@ using Antivirus.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Antivirus.Data;
 
 namespace Antivirus.Services
 {

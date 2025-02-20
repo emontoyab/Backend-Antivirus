@@ -6,6 +6,7 @@ using Antivirus.Mappers;
 using System.Security.Cryptography;
 using System.Text;
 using Antivirus.config;
+using Antivirus.Data;
 
 namespace Antivirus.Controllers
 {

@@ -3,6 +3,7 @@ using Antivirus.Models;
 using Antivirus.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Antivirus.config;
+using Antivirus.Data;
 
 namespace Antivirus.Services
 {

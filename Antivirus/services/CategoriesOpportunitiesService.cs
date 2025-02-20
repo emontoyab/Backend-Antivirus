@@ -2,6 +2,7 @@ using AutoMapper;
 using Antivirus.Dtos;
 using Antivirus.Models; 
 using Microsoft.EntityFrameworkCore;
+using Antivirus.Data;
 
 namespace Antivirus.Services
 {

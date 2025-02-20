@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Antivirus.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace Antivirus.Models;
+namespace Antivirus.Data;
 
 public partial class AppDbContext : DbContext
 {
