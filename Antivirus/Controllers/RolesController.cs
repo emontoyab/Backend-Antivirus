@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Antivirus.Dtos;
 using Antivirus.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Antivirus.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RolesController : ControllerBase
     {
         private readonly IRoleService _roleService;

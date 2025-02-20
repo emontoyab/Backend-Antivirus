@@ -1,5 +1,6 @@
 using Antivirus.Dtos;
 using Antivirus.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -7,6 +8,7 @@ namespace Antivirus.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class InstitutionOpportunitiesController : ControllerBase
     {
         private readonly IInstitutionOpportunitiesService _service;

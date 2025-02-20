@@ -1,11 +1,13 @@
 using Antivirus.Models.DTOs;
 using Antivirus.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Antivirus.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BootcampController : ControllerBase
     {
         private readonly IBootcampService _bootcampService;

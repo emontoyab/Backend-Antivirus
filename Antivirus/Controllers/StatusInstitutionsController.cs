@@ -6,11 +6,13 @@ using Antivirus.DTOs;
 using Antivirus.Mappers;
 using Antivirus.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Antivirus.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class StatusInstitutionsController : ControllerBase
     {
         private readonly IStatusInstitutionService _statusInstitutionService;
