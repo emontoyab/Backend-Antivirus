@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Antivirus.Models;
 using Antivirus.Services;
+using Antivirus.DTOs;
+using Antivirus.Mappers;
 using System.Security.Cryptography;
 using System.Text;
 using Antivirus.config;
-namespace ProductApi.Controllers
+
+namespace Antivirus.Controllers
 {
     [Route("api/auth")]
     [ApiController]
@@ -12,6 +15,7 @@ namespace ProductApi.Controllers
     {
         private readonly AppDbContext _context;
         private readonly AuthService _authService;
+
         public AuthController(AppDbContext context, AuthService authService)
         {
             _context = context;
@@ -36,7 +40,6 @@ namespace ProductApi.Controllers
             return Ok(new { message = "Usuario registrado exitosamente." });
         }
 
-
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginUserDto loginDto)
         {
@@ -58,6 +61,5 @@ namespace ProductApi.Controllers
             var token = _authService.GenerateJwtToken(existingUser);
             return Ok(new { token });
         }
-
     }
 }
