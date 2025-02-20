@@ -15,6 +15,7 @@ namespace Antivirus.config
             services.AddScoped<IInstitutionService, InstitutionService>();
             services.AddScoped<IStatusOpportunitiesService, StatusOpportunitiesService>();
             services.AddScoped<IDescriptionsBootcampsService, DescriptionsBootcampsService>();
+            services.AddScoped<IInstitutionOpportunitiesService, InstitutionOpportunitiesService>();
             services.AddScoped<IStatusBootcampService, StatusBootcampService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IBootcampService, BootcampService>();
