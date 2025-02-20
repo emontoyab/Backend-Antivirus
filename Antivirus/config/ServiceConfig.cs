@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Antivirus.Services;
 using Antivirus.Models;
+using Antivirus.Services.Interfaces;
 
 namespace Antivirus.config
 {
@@ -21,6 +22,7 @@ namespace Antivirus.config
             services.AddScoped<IOpportunitiesService, OpportunitiesService>();
             services.AddScoped<ICategoriesOpportunitiesService, CategoriesOpportunitiesService>();
             services.AddScoped<ITypeOpportunityService, TypeOpportunityService>();
+            services.AddScoped<IInstituteBootcampsService, InstituteBootcampsService>();
             
             // Configuración de la base de datos
             services.AddDbContext<AppDbContext>(options =>
