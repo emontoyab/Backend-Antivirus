@@ -3,6 +3,7 @@ using Antivirus.Models.DTOs;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Antivirus.Services
@@ -30,18 +31,27 @@ namespace Antivirus.Services
             return _mapper.Map<BootcampDto>(bootcamp);
         }
 
-        public async Task<BootcampDto> CreateAsync(BootcampDto bootcampDto)
+        public async Task CreateAsync(BootcampCreateDto Dto)
         {
-            var bootcamp = _mapper.Map<bootcamps>(bootcampDto);
-            _context.bootcamps.Add(bootcamp);
+            var bootcampVar = new bootcamps
+            {
+                nombre = Dto.Nombre,
+                id_costos_id = Dto.IdCostosId,
+                id_estado_id = Dto.IdEstadoId,
+                id_general_id = Dto.IdGeneralId,
+                id_temas_id = Dto.IdTemasId,
+                informacion = Dto.Informacion, 
+                trial751 = Dto.Trial751
+            };
+            _context.bootcamps.Add(bootcampVar);
             await _context.SaveChangesAsync();
-            return _mapper.Map<BootcampDto>(bootcamp);
         }
 
-        public async Task<BootcampDto> UpdateAsync(long id, BootcampDto bootcampDto)
+        public async Task<BootcampDto> UpdateAsync(long id, BootcampCreateDto bootcampDto)
         {
             var bootcamp = await _context.bootcamps.FindAsync(id);
-            if (bootcamp == null) return null;
+            if (bootcamp == null)
+                return null;
 
             // No modificar la propiedad 'id'
             bootcamp.nombre = bootcampDto.Nombre;
@@ -50,7 +60,6 @@ namespace Antivirus.Services
             bootcamp.id_general_id = bootcampDto.IdGeneralId;
             bootcamp.id_temas_id = bootcampDto.IdTemasId;
             bootcamp.informacion = bootcampDto.Informacion;
-            bootcamp.trial751 = bootcampDto.Trial751;
 
             await _context.SaveChangesAsync();
             return _mapper.Map<BootcampDto>(bootcamp);

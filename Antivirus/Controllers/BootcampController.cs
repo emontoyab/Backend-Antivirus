@@ -31,14 +31,14 @@ namespace Antivirus.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<BootcampDto>> Create(BootcampDto bootcampDto)
+        public async Task<ActionResult> Create([FromBody] BootcampCreateDto Dto)
         {
-            var bootcamp = await _bootcampService.CreateAsync(bootcampDto);
-            return CreatedAtAction(nameof(GetById), new { id = bootcamp.Id }, bootcamp);
+            await _bootcampService.CreateAsync(Dto);
+            return CreatedAtAction(nameof(GetAll), Dto);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(long id, BootcampDto bootcampDto)
+        public async Task<IActionResult> Update(long id, BootcampCreateDto bootcampDto)
         {
             var bootcamp = await _bootcampService.UpdateAsync(id, bootcampDto);
             if (bootcamp == null) return NotFound();

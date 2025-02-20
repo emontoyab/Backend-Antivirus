@@ -8,8 +8,8 @@ namespace Antivirus.Services
     {
         Task<IEnumerable<BootcampDto>> GetAllAsync();
         Task<BootcampDto> GetByIdAsync(long id);
-        Task<BootcampDto> CreateAsync(BootcampDto bootcampDto);
-        Task<BootcampDto> UpdateAsync(long id, BootcampDto bootcampDto);
+        Task CreateAsync(BootcampCreateDto Dto);
+        Task<BootcampDto> UpdateAsync(long id, BootcampCreateDto bootcampDto);
         Task<bool> DeleteAsync(long id);
     }
 }

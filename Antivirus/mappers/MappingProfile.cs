@@ -8,7 +8,10 @@ namespace Antivirus.Profiles
     {
         public MappingProfile()
         {
+            CreateMap<BootcampCreateDto, bootcamps>()
+            .ForMember(dest => dest.informacion, opt => opt.MapFrom(src => src.Informacion));
             CreateMap<bootcamps, BootcampDto>().ReverseMap();
+            CreateMap<bootcamps, BootcampCreateDto>().ReverseMap();
         }
     }
 }
