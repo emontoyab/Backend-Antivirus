@@ -28,6 +28,7 @@ namespace Antivirus.config
             services.AddScoped<ICategoriesOpportunitiesService, CategoriesOpportunitiesService>();
             services.AddScoped<ITypeOpportunityService, TypeOpportunityService>();
             services.AddScoped<IInstituteBootcampsService, InstituteBootcampsService>();
+            services.AddScoped<ITopicsBootcampsService, TopicsBootcampsService>();
             services.AddScoped<IUserOpportunitiesService, UserOpportunitiesService>();
 
             // Configuración de la base de datos
