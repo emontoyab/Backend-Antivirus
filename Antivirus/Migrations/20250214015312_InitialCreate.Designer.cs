@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Antivirus.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250213031752_AddingJwt")]
-    partial class AddingJwt
+    [Migration("20250214015312_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -524,6 +524,10 @@ namespace Antivirus.Migrations
                         .HasColumnType("bigint");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("id"));
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("date_birth")
                         .HasMaxLength(255)

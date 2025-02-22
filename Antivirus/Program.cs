@@ -1,34 +1,29 @@
-using Antivirus.Models;
+using Antivirus.config;
 using Antivirus.Services;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
+using AutoMapper;
+
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Agregar configuración de servicios
 builder.Services.AddControllersWithViews();
+builder.Services.ConfigureServices(builder.Configuration);
+builder.Services.ConfigureJwtAuthentication(builder.Configuration);
+builder.Services.ConfigureSwagger();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddControllers();
 
-//Add services authenticate
-builder.Services.AddScoped<AuthService>();
-
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Antivirus", Version = "v1" });
-});
-
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Middleware de manejo de errores
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
@@ -39,6 +34,7 @@ app.UseSwaggerUI(c =>
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

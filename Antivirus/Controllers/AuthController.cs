@@ -1,9 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Antivirus.Models;
 using Antivirus.Services;
+using Antivirus.DTOs;
+using Antivirus.Mappers;
 using System.Security.Cryptography;
 using System.Text;
-namespace ProductApi.Controllers
+using Antivirus.config;
+using Antivirus.Data;
+
+namespace Antivirus.Controllers
 {
     [Route("api/auth")]
     [ApiController]
@@ -11,6 +16,7 @@ namespace ProductApi.Controllers
     {
         private readonly AppDbContext _context;
         private readonly AuthService _authService;
+
         public AuthController(AppDbContext context, AuthService authService)
         {
             _context = context;
@@ -35,7 +41,6 @@ namespace ProductApi.Controllers
             return Ok(new { message = "Usuario registrado exitosamente." });
         }
 
-
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginUserDto loginDto)
         {
@@ -47,9 +52,9 @@ namespace ProductApi.Controllers
             }
 
             // Verificar la contraseña encriptada
-            string hashedPassword = Convert.ToBase64String(SHA256.HashData(Encoding.UTF8.GetBytes(loginDto.Password)));
+            string hashedPassword = PasswordHasher.HashPassword(loginDto.Password);
 
-            if (existingUser.PasswordHash != hashedPassword)
+            if (existingUser.password != hashedPassword)
             {
                 return Unauthorized(new { message = "Contraseña incorrecta." });
             }
@@ -57,6 +62,5 @@ namespace ProductApi.Controllers
             var token = _authService.GenerateJwtToken(existingUser);
             return Ok(new { token });
         }
-
     }
 }
