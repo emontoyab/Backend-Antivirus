@@ -31,7 +31,8 @@ namespace Antivirus.config
             services.AddScoped<IUserRolesService, UserRolesService>();        
             services.AddScoped<ITopicsBootcampsService, TopicsBootcampsService>();
             services.AddScoped<IUserOpportunitiesService, UserOpportunitiesService>();
-
+            services.AddScoped<IServiceService, ServiceService>();
+            services.AddScoped<IBenefitService, BenefitService>();
             // Configuración de la base de datos
             services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));

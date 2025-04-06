@@ -47,7 +47,7 @@ namespace Antivirus.Services
                 return null;
             }
 
-            // Actualiza las propiedades (ajusta los nombres de propiedades según corresponda)
+            // Actualiza las propiedades (incluyendo image_url)
             entity.adicional_dates = dto.adicional_dates;
             entity.applications = dto.applications;
             entity.contact_channels = dto.contact_channels;
@@ -60,6 +60,7 @@ namespace Antivirus.Services
             entity.id_status_review = dto.id_status_review;
             entity.oportunity_type = dto.oportunity_type;
             entity.trial755 = dto.trial755;
+            entity.image_url = dto.image_url; 
 
             _context.opportunities.Update(entity);
             await _context.SaveChangesAsync();

@@ -15,42 +15,26 @@ public partial class AppDbContext : DbContext
     }
 
     public virtual DbSet<bootcamps> bootcamps { get; set; }
-
     public virtual DbSet<categories_opportunities> categories_opportunities { get; set; }
-
     public virtual DbSet<costs_bootcamps> costs_bootcamps { get; set; }
-
     public virtual DbSet<descriptions_bootcamps> descriptions_bootcamps { get; set; }
-
     public virtual DbSet<institute_bootcamps> institute_bootcamps { get; set; }
-
     public virtual DbSet<institute_opportunities> institute_opportunities { get; set; }
-
     public virtual DbSet<institutions> institutions { get; set; }
-
     public virtual DbSet<opportunities> opportunities { get; set; }
-
     public virtual DbSet<role> role { get; set; }
-
     public virtual DbSet<status_bootcamps> status_bootcamps { get; set; }
-
     public virtual DbSet<status_institutions> status_institutions { get; set; }
-
     public virtual DbSet<status_opportunities> status_opportunities { get; set; }
-
     public virtual DbSet<topics_bootcamps> topics_bootcamps { get; set; }
-
     public virtual DbSet<type_opportunities> type_opportunities { get; set; }
-
     public virtual DbSet<ubications_institutions> ubications_institutions { get; set; }
-
     public virtual DbSet<user_oportunities> user_oportunities { get; set; }
-
     public virtual DbSet<user_roles> user_roles { get; set; }
-
     public virtual DbSet<users> users { get; set; }
-
     public virtual DbSet<users_bootcamps> users_bootcamps { get; set; }
+    public virtual DbSet<Service> Services { get; set; } 
+    public DbSet<Benefits> Benefits { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -69,6 +53,23 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.id_general).WithMany(p => p.bootcamps).HasConstraintName("fkjv4fduf6dkh5gp1gy6k9uyngw");
 
             entity.HasOne(d => d.id_temas).WithMany(p => p.bootcamps).HasConstraintName("fkqw8goqpav8guq2u2dp06l9fco");
+        });
+
+        // Configuración para el modelo Service
+        modelBuilder.Entity<Service>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("pk_services");
+
+            entity.Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(255);
+
+            entity.Property(e => e.Description)
+                .IsRequired()
+                .HasMaxLength(1000);
+
+            entity.Property(e => e.image_url)
+                .HasMaxLength(255);
         });
 
         modelBuilder.Entity<categories_opportunities>(entity =>

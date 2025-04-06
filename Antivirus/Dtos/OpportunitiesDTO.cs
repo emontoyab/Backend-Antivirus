@@ -14,6 +14,7 @@ namespace Antivirus.Dtos
         public long? id_categories { get; set; }
         public long? id_status_review { get; set; }
         public long? oportunity_type { get; set; }
+        public string? image_url { get; set; }
         public char? trial755 { get; set; }
     }
         public class OpportunitiesCreateDTO
@@ -29,6 +30,7 @@ namespace Antivirus.Dtos
         public long? id_categories { get; set; }
         public long? id_status_review { get; set; }
         public long? oportunity_type { get; set; }
+        public string? image_url { get; set; }
         public char? trial755 { get; set; }
     }
 }

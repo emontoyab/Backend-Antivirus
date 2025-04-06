@@ -9,7 +9,7 @@ namespace Antivirus.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize] // Mantén la autorización para el controlador por defecto
     public class OpportunitiesController : ControllerBase
     {
         private readonly IOpportunitiesService _service;
@@ -21,6 +21,7 @@ namespace Antivirus.Controllers
 
         // GET: api/Opportunities
         [HttpGet]
+        [AllowAnonymous] // Permite acceso sin autorización para este método
         public async Task<ActionResult<IEnumerable<OpportunitiesDTO>>> GetAll()
         {
             var opportunities = await _service.GetAllAsync();
@@ -29,6 +30,7 @@ namespace Antivirus.Controllers
 
         // GET: api/Opportunities/{id}
         [HttpGet("{id}")]
+        [AllowAnonymous] // Permite acceso sin autorización para este método
         public async Task<ActionResult<OpportunitiesDTO>> GetById(long id)
         {
             var opportunity = await _service.GetByIdAsync(id);

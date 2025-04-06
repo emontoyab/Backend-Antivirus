@@ -41,6 +41,9 @@ public partial class opportunities
 
     public long? oportunity_type { get; set; }
 
+    [StringLength(255)]
+    public string? image_url { get; set; }
+
     [MaxLength(1)]
     public char? trial755 { get; set; }
 
