@@ -1,8 +1,15 @@
 using Antivirus.config;
 using Antivirus.Services;
 using AutoMapper;
+using Antivirus.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
 // Agregar configuración de servicios
 builder.Services.AddControllersWithViews();
