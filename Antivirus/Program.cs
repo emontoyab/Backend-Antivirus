@@ -11,6 +11,8 @@ builder.Services.ConfigureJwtAuthentication(builder.Configuration);
 builder.Services.ConfigureSwagger();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 // Configuración de CORS
 builder.Services.AddCors(options =>
@@ -37,6 +39,7 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Antivirus V1");
+    c.RoutePrefix = string.Empty; 
 });
 
 app.UseHttpsRedirection();
